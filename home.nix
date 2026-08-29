@@ -61,4 +61,13 @@
   programs.bat = {
     enable = true;
   };
+
+  # Terminal file manager and its search dependencies
+  programs.yazi = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.ripgrep.enable = true;
+  programs.fd.enable = true;
 }
