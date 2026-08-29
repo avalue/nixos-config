@@ -78,7 +78,14 @@
   services.openssh.enable = true;
 
   # --- 8. HEADLESS ENVIRONMENT (NO GUI YET) ---
-  services.xserver.enable = false;
+  # Enable the X11 windowing system
+  services.xserver.enable = true;
+
+  # Enable the SDDM login manager
+  services.displayManager.sddm.enable = true;
+
+  # Enable KDE Plasma Desktop Environment
+  services.desktopManager.plasma6.enable = true;
 
   # --- 9. SYSTEM PACKAGES & FLAKES ---
   environment.systemPackages = with pkgs; [
