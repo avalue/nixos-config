@@ -60,11 +60,16 @@
   hardware.logitech.wireless.enableGraphical = true;
 
   # --- 7. USER ACCOUNT & REMOTE ACCESS ---
+  # Enable Zsh system-wide
+  programs.zsh.enable = true;
+
   users.users.avalue = {
     isNormalUser = true;
     description = "Aurimas Valionis";
     extraGroups = [ "wheel" "networkmanager" ];
     initialPassword = "temporaryPassword123";
+    # Set Zsh as the default shell for this user
+    shell = pkgs.zsh;
   };
   
   security.sudo.enable = true;

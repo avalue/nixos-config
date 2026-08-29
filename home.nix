@@ -8,10 +8,14 @@
   # Configure Git declaratively (generates ~/.gitconfig)
   programs.git = {
     enable = true;
-    userName = "Aurimas Valionis";
-    userEmail = "aurimas.valionis@gmail.com";
-    extraConfig = {
-      init.defaultBranch = "main";
+    settings = {
+      user = {
+        name = "Aurimas Valionis";
+        email = "aurimas.valionis@gmail.com";
+      };
+      init = {
+        defaultBranch = "main";
+      };
     };
   };
 
@@ -25,4 +29,21 @@
   };
 
   programs.home-manager.enable = true;
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+
+    # Oh-My-Zsh integration
+    oh-my-zsh = {
+      enable = true;
+      theme = "robbyrussell"; # Classic, clean theme
+      plugins = [
+        "git"
+        "sudo"
+      ];
+    };
+  };
 }
