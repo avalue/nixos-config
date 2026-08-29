@@ -46,4 +46,19 @@
       ];
     };
   };
+
+  # Modern CLI toolkit
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.bat = {
+    enable = true;
+  };
 }
