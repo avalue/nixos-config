@@ -29,6 +29,9 @@
   # --- 4. LOCALE & LANGUAGE ---
   time.timeZone = "Europe/Vilnius";
 
+  # Force Linux to use local time for the hardware clock to match macOS
+  time.hardwareClockInLocalTime = true;
+
   i18n.defaultLocale = "en_GB.UTF-8";
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "lt_LT.UTF-8";
