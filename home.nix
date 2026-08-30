@@ -77,7 +77,7 @@
     microsoft-edge
     obsidian
     libreoffice-qt6
-    jdk
+    jdk25
     # zoom-us
     # discord
   ];
