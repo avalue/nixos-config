@@ -80,5 +80,7 @@
     jdk25
     # zoom-us
     # discord
+    antigravity # The Antigravity 2.0 agent orchestration app
+    antigravity-ide-fhs # The IDE wrapped for extension compatibility
   ];
 }
