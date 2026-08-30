@@ -8,10 +8,14 @@
   # Configure Git declaratively 
   programs.git = {
     enable = true;
-    userName = "Aurimas Valionis";
-    userEmail = "aurimas.valionis@gmail.com";
-    extraConfig = {
-      init.defaultBranch = "main";
+    settings = {
+      user = {
+        name = "Aurimas Valionis";
+        email = "aurimas.valionis@gmail.com";
+      };
+      init = {
+        defaultBranch = "main";
+      };
     };
   };
 
@@ -71,14 +75,4 @@
   home.packages = with pkgs; [
     google-chrome
   ];
-
-  programs.chromium = {
-    enable = true;
-    package = pkgs.google-chrome;
-
-    # Pass arguments such as Plasma support or GPU flags
-    commandLineArgs = [
-      "--ignore-gpu-blocklist"
-    ];
-  };
 }
