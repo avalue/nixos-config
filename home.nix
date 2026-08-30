@@ -67,4 +67,23 @@
 
   programs.ripgrep.enable = true;
   programs.fd.enable = true;
+
+  home.packages = with pkgs; [
+    google-chrome
+  ];
+
+  programs.chromium = {
+    enable = true;
+    package = pkgs.google-chrome;
+
+    # Specify extensions by their Chrome Web Store ID
+    extensions = [
+      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Example: uBlock Origin
+    ];
+
+    # Pass arguments such as Plasma support or GPU flags
+    commandLineArgs = [
+      "--ignore-gpu-blocklist"
+    ];
+  };
 }
