@@ -2,7 +2,7 @@
 
 {
   imports =
-    [ 
+    [
       ./hardware-configuration.nix
     ];
 
@@ -15,7 +15,7 @@
   zramSwap.enable = true;
 
   # --- 3. NETWORKING & WI-FI ---
-  networking.hostName = "macpro"; 
+  networking.hostName = "macpro";
   networking.networkmanager.enable = true;
 
   # Allow unfree packages and permit the insecure Broadcom driver
@@ -28,8 +28,6 @@
 
   # --- 4. LOCALE & LANGUAGE ---
   time.timeZone = "Europe/Vilnius";
-
-  # Force Linux to use local time for the hardware clock to match macOS
   time.hardwareClockInLocalTime = true;
 
   i18n.defaultLocale = "en_GB.UTF-8";
@@ -46,65 +44,52 @@
   };
 
   # --- 5. KEYBOARD LAYOUT & TTY ---
-  services.xserver.xkb = {
-    layout = "us"; 
-  };
-  
-  console = {
-    useXkbConfig = true; 
-  };
+  services.xserver.xkb.layout = "us";
+  console.useXkbConfig = true;
 
   # --- 6. BLUETOOTH & LOGITECH K380 ---
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  hardware.enableRedistributableFirmware = true;  
+  hardware.enableRedistributableFirmware = true;
 
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
 
   # --- 7. USER ACCOUNT & REMOTE ACCESS ---
-  # Enable Zsh system-wide
   programs.zsh.enable = true;
 
   users.users.avalue = {
     isNormalUser = true;
     description = "Aurimas Valionis";
     extraGroups = [ "wheel" "networkmanager" ];
-    initialPassword = "temporaryPassword123";
-    # Set Zsh as the default shell for this user
+    initialPassword = "temporaryPassword123"; # NOTE: Change this upon first login
     shell = pkgs.zsh;
   };
-  
-  security.sudo.enable = true;
 
-  # Enable SSH for remote configuration from macOS
+  security.sudo.enable = true;
   services.openssh.enable = true;
 
-  # --- 8. HEADLESS ENVIRONMENT (NO GUI YET) ---
-  # Enable the X11 windowing system
+  # --- 8. GRAPHICS & DESKTOP ENVIRONMENT ---
+  # Enable Hardware Graphics Acceleration for AMD Vega
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+  services.xserver.videoDrivers = [ "amdgpu" ];
+
+  # Enable the X11 windowing system, SDDM, and Plasma
   services.xserver.enable = true;
-
-  # Enable the SDDM login manager
   services.displayManager.sddm.enable = true;
-
-  # Enable KDE Plasma Desktop Environment
   services.desktopManager.plasma6.enable = true;
 
   # --- 9. SYSTEM PACKAGES & FLAKES ---
   environment.systemPackages = with pkgs; [
-    git
-    vim     # or neovim
+    vim
     wget
     curl
     htop
-    # Modern CLI toolkit
-    eza
-    bat
-    fd
-    ripgrep
-    zoxide
-    yazi
-  ]; 
+    # Removed duplicated CLI packages; managed in home.nix
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

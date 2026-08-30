@@ -5,17 +5,13 @@
   home.homeDirectory = "/home/avalue";
   home.stateVersion = "26.05";
 
-  # Configure Git declaratively (generates ~/.gitconfig)
+  # Configure Git declaratively 
   programs.git = {
     enable = true;
-    settings = {
-      user = {
-        name = "Aurimas Valionis";
-        email = "aurimas.valionis@gmail.com";
-      };
-      init = {
-        defaultBranch = "main";
-      };
+    userName = "Aurimas Valionis";
+    userEmail = "aurimas.valionis@gmail.com";
+    extraConfig = {
+      init.defaultBranch = "main";
     };
   };
 
@@ -25,7 +21,7 @@
     ll = "eza -lh --icons";
     la = "eza -lah --icons";
     cat = "bat";
-    cd = "z"; # Maps standard cd to zoxide
+    # Removed manual cd = "z" alias; zoxide handles this natively
   };
 
   programs.home-manager.enable = true;
@@ -39,7 +35,7 @@
     # Oh-My-Zsh integration
     oh-my-zsh = {
       enable = true;
-      theme = "robbyrussell"; # Classic, clean theme
+      theme = "robbyrussell";
       plugins = [
         "git"
         "sudo"
@@ -51,6 +47,7 @@
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
+    options = [ "--cmd cd" ]; # Safely replaces the native cd command
   };
 
   programs.eza = {
