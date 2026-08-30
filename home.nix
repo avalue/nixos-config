@@ -83,6 +83,6 @@
     # antigravity # The Antigravity 2.0 agent orchestration app
     # antigravity-ide-fhs # The IDE wrapped for extension compatibility
     vscode-fhs
-    jetbrains.idea-oss
+    jetbrains.idea
   ];
 }
