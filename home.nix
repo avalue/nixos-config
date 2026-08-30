@@ -75,5 +75,10 @@
   home.packages = with pkgs; [
     google-chrome
     microsoft-edge
+    obsidian
+    libreoffice-qt6
+    jdk24
+    # zoom-us
+    # discord
   ];
 }
