@@ -74,5 +74,6 @@
 
   home.packages = with pkgs; [
     google-chrome
+    teams-for-linux
   ];
 }
