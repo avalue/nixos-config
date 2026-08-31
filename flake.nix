@@ -11,7 +11,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
 
       # 1. Virtual Machine (Testing Environment)
