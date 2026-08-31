@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
+  #imports =
+  #  [
+  #    ./hardware-configuration.nix
+  #  ];
 
   # --- 1. BOOT & MAC PRO 5,1 NVRAM PROTECTIONS (CRITICAL) ---
   boot.loader.systemd-boot.enable = true;
