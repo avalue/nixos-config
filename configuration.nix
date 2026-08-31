@@ -97,7 +97,6 @@
 
   # Run garbage collection weekly to remove generations older than 14 days
   nix.gc = {
-    enable = true;
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 14d";
