@@ -91,6 +91,18 @@
     # Removed duplicated CLI packages; managed in home.nix
   ];
 
+  # --- 10. NIX STORE MANAGEMENT ---
+  # Automatically hardlink duplicate files to save disk space
+  nix.settings.auto-optimise-store = true;
+
+  # Run garbage collection weekly to remove generations older than 14 days
+  nix.gc = {
+    enable = true;
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "26.05";

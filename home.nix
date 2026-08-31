@@ -21,11 +21,7 @@
 
   # Set up aliases for your modern CLI tools
   home.shellAliases = {
-    ls = "eza --icons";
-    ll = "eza -lh --icons";
-    la = "eza -lah --icons";
     cat = "bat";
-    # Removed manual cd = "z" alias; zoxide handles this natively
   };
 
   programs.home-manager.enable = true;
@@ -57,6 +53,8 @@
   programs.eza = {
     enable = true;
     enableZshIntegration = true;
+    # Add this line to automatically generate the standard ls, ll, and la aliases
+    enableAliases = true;
   };
 
   programs.bat = {
@@ -77,12 +75,14 @@
     microsoft-edge
     obsidian
     libreoffice-qt6
-    jdk25
     # zoom-us
     # discord
-    # antigravity # The Antigravity 2.0 agent orchestration app
-    # antigravity-ide-fhs # The IDE wrapped for extension compatibility
     vscode-fhs
     jetbrains.idea
   ];
+
+  programs.java = {
+    enable = true;
+    package = pkgs.jdk25;
+  };
 }
