@@ -53,8 +53,6 @@
   programs.eza = {
     enable = true;
     enableZshIntegration = true;
-    # Add this line to automatically generate the standard ls, ll, and la aliases
-    enableAliases = true;
   };
 
   programs.bat = {
