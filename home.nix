@@ -82,6 +82,15 @@
     kdePackages.kdepim-runtime
   ];
 
+  programs.ghostty = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      theme = "Abernathy";
+      background-opacity = "0.95";
+    };
+  };
+
   programs.java = {
     enable = true;
     package = pkgs.jdk25;
