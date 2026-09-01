@@ -134,8 +134,8 @@
         };
 
         "network" = {
+          format = "Ethernet ";
           format-wifi = "{essid} ({signalStrength}%) ";
-          format-ethernet = "Ethernet ";
           format-disconnected = "Disconnected ⚠";
         };
       };
