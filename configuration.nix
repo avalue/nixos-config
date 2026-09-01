@@ -70,8 +70,18 @@
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true; # Force SDDM to run natively on Wayland
+  };
   services.desktopManager.plasma6.enable = true;
+  programs.hyprland.enable = true;
+
+  # Enable XDG Portals for screen sharing and file pickers
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+  };
 
   # --- 9. SYSTEM PACKAGES ---
   environment.systemPackages = with pkgs; [
@@ -88,6 +98,17 @@
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 14d";
+  };
+
+  # --- 11. AUDIO & SOUND (PIPEWIRE) ---
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    # jack.enable = true;
   };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
