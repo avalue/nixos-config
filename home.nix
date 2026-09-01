@@ -78,6 +78,8 @@
     vscode-fhs
     jetbrains.idea
     kdePackages.kweather
+    kdePackages.korganizer
+    kdePackages.kdepim-runtime
   ];
 
   programs.java = {
