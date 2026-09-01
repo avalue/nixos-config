@@ -77,6 +77,7 @@
     # discord
     vscode-fhs
     jetbrains.idea
+    kdePackages.kweather
   ];
 
   programs.java = {
