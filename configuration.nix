@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  #imports =
-  #  [
-  #    ./hardware-configuration.nix
-  #  ];
-
   # --- 1. BOOT & MAC PRO 5,1 NVRAM PROTECTIONS (CRITICAL) ---
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
@@ -18,7 +13,6 @@
   networking.hostName = "macpro";
   networking.networkmanager.enable = true;
 
-  # Allow unfree packages and permit the insecure Broadcom driver
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
     "broadcom-sta-6.30.223.271-59-6.18.47"
@@ -47,13 +41,12 @@
   services.xserver.xkb.layout = "us";
   console.useXkbConfig = true;
 
-  # --- 6. BLUETOOTH & LOGITECH K380 ---
+  # --- 6. BLUETOOTH & OPENLOGI ---
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   hardware.enableRedistributableFirmware = true;
 
-  hardware.logitech.wireless.enable = true;
-  hardware.logitech.wireless.enableGraphical = true;
+  programs.openlogi.enable = true;
 
   # --- 7. USER ACCOUNT & REMOTE ACCESS ---
   programs.zsh.enable = true;
@@ -62,7 +55,7 @@
     isNormalUser = true;
     description = "Aurimas Valionis";
     extraGroups = [ "wheel" "networkmanager" ];
-    initialPassword = "temporaryPassword123"; # NOTE: Change this upon first login
+    initialPassword = "temporaryPassword123";
     shell = pkgs.zsh;
   };
 
@@ -70,32 +63,27 @@
   services.openssh.enable = true;
 
   # --- 8. GRAPHICS & DESKTOP ENVIRONMENT ---
-  # Enable Hardware Graphics Acceleration for AMD Vega
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  # Enable the X11 windowing system, SDDM, and Plasma
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  # --- 9. SYSTEM PACKAGES & FLAKES ---
+  # --- 9. SYSTEM PACKAGES ---
   environment.systemPackages = with pkgs; [
     vim
     wget
     curl
     htop
-    # Removed duplicated CLI packages; managed in home.nix
   ];
 
   # --- 10. NIX STORE MANAGEMENT ---
-  # Automatically hardlink duplicate files to save disk space
   nix.settings.auto-optimise-store = true;
 
-  # Run garbage collection weekly to remove generations older than 14 days
   nix.gc = {
     automatic = true;
     dates = "weekly";
